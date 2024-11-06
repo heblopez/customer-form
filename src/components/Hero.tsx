@@ -33,7 +33,7 @@ export default function Hero({ currentQuestion, totalQuestions }: HeroProps) {
 
   return (
     <Header>
-      <BannerImage src={bannerImg} alt='customerScoops Banner' />
+      <BannerImage src={bannerImg} alt='customerScoops Banner' loading='lazy' />
       <ScreenNumber>{`${currentPage} | ${pages}`}</ScreenNumber>
     </Header>
   )

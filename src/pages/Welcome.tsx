@@ -27,16 +27,22 @@ const Form = styled.form`
   gap: 2rem;
 `
 
-export default function WelcomePage() {
+interface WelcomeProps {
+  questionsNumber: number
+  onClientName: (name: string) => void
+}
+
+export default function WelcomePage({ questionsNumber, onClientName }: WelcomeProps) {
   const inputRef = useRef<HTMLInputElement>(null)
 
   const handleClick = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault()
-    console.log(inputRef.current?.value)
+    onClientName(inputRef.current?.value || '')
   }
+
   return (
     <Wrapper>
-      <Hero currentQuestion={1} totalQuestions={8} />
+      <Hero currentQuestion={1} totalQuestions={questionsNumber} />
       <Content>
         <Text>
           Muchas gracias por tu interés en conocer <strong>customerScoops</strong>, que a través de
