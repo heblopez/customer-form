@@ -1,34 +1,9 @@
 import styled from 'styled-components'
-import bannerImg from './assets/customer-banner.svg'
-
-const Container = styled.div`
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 3rem;
-`
-
-const Header = styled.div`
-  position: relative;
-  width: 100%;
-`
-
-const BannerImage = styled.img`
-  width: 100%;
-  height: auto;
-  border-radius: 0 0 20px 20px;
-  padding-left: 16px;
-`
-
-const ScreenNumber = styled.span`
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  font-size: 1rem;
-  color: #000;
-  font-weight: 700;
-  font-family: 'SF Pro';
-`
+import Hero from './components/Hero'
+import Wrapper from './components/Wrapper'
+import { useRef } from 'react'
+import Input from './components/Input'
+import Button from './components/Button'
 
 const Content = styled.div`
   display: flex;
@@ -46,38 +21,17 @@ const Text = styled.p`
   margin: 0;
 `
 
-const Input = styled.input`
-  width: 100%;
-  font-family: 'SF Pro';
-  color: rgba(35, 19, 49, 0.8);
-  font-size: 20px;
-  border: none;
-  border-bottom: 1px solid rgba(35, 19, 49, 0.5);
-  outline: none;
-`
-
-const Button = styled.button`
-  width: max-content;
-  background-color: #231331;
-  color: white;
-  padding: 12px 24px;
-  border-radius: 24px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s ease;
-
-  &:hover {
-    opacity: 0.95;
-  }
-`
-
 function App() {
+  const inputRef = useRef<HTMLInputElement>(null)
+
+  const handleClick = (e: React.FormEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+    console.log(inputRef.current?.value)
+  }
+
   return (
-    <Container>
-      <Header>
-        <BannerImage src={bannerImg} alt='customer Scoops Banner' />
-        <ScreenNumber>01 | 08</ScreenNumber>
-      </Header>
+    <Wrapper>
+      <Hero currentQuestion={1} totalQuestions={8} />
       <Content>
         <Text>
           Muchas gracias por tu interés en conocer <strong>customerScoops</strong>, que a través de
@@ -85,10 +39,10 @@ function App() {
           de tu negocio.
         </Text>
         <Text>Queremos conocerte, ¿cuál es tu nombre?</Text>
-        <Input placeholder='Nombre' />
-        <Button>Comenzar</Button>
+        <Input ref={inputRef} placeholder='Nombre' />
+        <Button onClick={handleClick}>Comenzar</Button>
       </Content>
-    </Container>
+    </Wrapper>
   )
 }
 
