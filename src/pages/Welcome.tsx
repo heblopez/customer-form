@@ -42,7 +42,7 @@ export default function WelcomePage({ questionsNumber, onClientName }: WelcomePr
 
   return (
     <Wrapper>
-      <Hero currentQuestion={1} totalQuestions={questionsNumber} />
+      <Hero currentPage={1} totalPages={questionsNumber + 2} />
       <Content>
         <Text>
           Muchas gracias por tu interés en conocer <strong>customerScoops</strong>, que a través de

@@ -29,13 +29,18 @@ const PrevImg = styled.img`
   height: 18px;
 `
 
-export default function Footer({ handleClick }: { handleClick: () => void }) {
+interface FooterProps {
+  handleNext: () => void
+  handlePrev: () => void
+}
+
+export default function Footer({ handleNext, handlePrev }: FooterProps) {
   return (
     <Wrapper>
-      <PrevButton>
+      <PrevButton onClick={handlePrev}>
         <PrevImg src={arrowSvg} alt='previous' />
       </PrevButton>
-      <Button onClick={handleClick}>Siguiente</Button>
+      <Button onClick={handleNext}>Siguiente</Button>
     </Wrapper>
   )
 }

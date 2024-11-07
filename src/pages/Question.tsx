@@ -3,6 +3,8 @@ import Hero from '@/components/Hero'
 import Wrapper from '@/components/Wrapper'
 import Footer from '@/components/Footer'
 import OptionButton from '@/components/OptionButton'
+import { Question } from '@/types'
+import { useState } from 'react'
 
 const Content = styled.div`
   display: flex;
@@ -28,36 +30,46 @@ const GridLayout = styled.div`
 
 interface QuestionProps {
   clientName: string
-  questionsNumber: number
-  // options: string[]
+  currentPage: number
+  handlePage: (page: number) => void
+  questions: Question[]
 }
 
-const options = [
-  'Board member',
-  'C-level',
-  'Gerente',
-  'Subgerente',
-  'Jefe área',
-  'Líder de área',
-  'Ejecutivo / Analista',
-  'Otro'
-]
-export default function QuestionPage({ clientName, questionsNumber }: QuestionProps) {
+export default function QuestionPage({
+  clientName,
+  currentPage,
+  handlePage,
+  questions
+}: QuestionProps) {
+  const [indexQuestion, setIndexQuestion] = useState(0)
+
+  const handleNext = () => {
+    setIndexQuestion(prev => prev + 1)
+    handlePage(currentPage + 1)
+  }
+
+  const handlePrev = () => {
+    setIndexQuestion(prev => prev - 1)
+    handlePage(currentPage - 1)
+  }
+
   return (
     <Wrapper>
-      <Hero currentQuestion={1} totalQuestions={questionsNumber} />
+      <Hero currentPage={currentPage} totalPages={questions.length + 2} />
       <Content>
-        <Text>
-          <strong>Genial {`${clientName}, `}</strong>ahora nos gustaría tener cierta info para
-          diseñar una gran propuesta de valor para ti:
-        </Text>
-        <Text>¿Cuál es tu cargo/posición dentro de tu empresa?</Text>
+        {indexQuestion === 0 && (
+          <Text>
+            <strong>Genial {`${clientName}, `}</strong>ahora nos gustaría tener cierta info para
+            diseñar una gran propuesta de valor para ti:
+          </Text>
+        )}
+        <Text>{questions[indexQuestion].question}</Text>
         <GridLayout>
-          {options.map((option, index) => (
+          {questions[indexQuestion].options.map((option, index) => (
             <OptionButton key={index}>{option}</OptionButton>
           ))}
         </GridLayout>
-        <Footer handleClick={() => console.log('next')} />
+        <Footer handlePrev={handlePrev} handleNext={handleNext} />
       </Content>
     </Wrapper>
   )

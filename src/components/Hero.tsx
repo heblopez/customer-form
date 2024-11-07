@@ -23,18 +23,18 @@ const ScreenNumber = styled.span`
 `
 
 interface HeroProps {
-  currentQuestion: number
-  totalQuestions: number
+  currentPage: number
+  totalPages: number
 }
 
-export default function Hero({ currentQuestion, totalQuestions }: HeroProps) {
-  const pages = totalQuestions < 10 ? `0${totalQuestions}` : totalQuestions
-  const currentPage = currentQuestion < 10 ? `0${currentQuestion}` : currentQuestion
+export default function Hero({ currentPage, totalPages }: HeroProps) {
+  const pages = totalPages < 10 ? `0${totalPages}` : totalPages
+  const currentPageNumber = currentPage < 10 ? `0${currentPage}` : currentPage
 
   return (
     <Header>
       <BannerImage src={bannerImg} alt='customerScoops Banner' loading='lazy' />
-      <ScreenNumber>{`${currentPage} | ${pages}`}</ScreenNumber>
+      <ScreenNumber>{`${currentPageNumber} | ${pages}`}</ScreenNumber>
     </Header>
   )
 }
