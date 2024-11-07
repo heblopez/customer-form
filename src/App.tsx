@@ -30,7 +30,8 @@ const questions: Question[] = [
       'Optimizar procesos comerciales',
       'Optimizar procesos operativos',
       'Otro'
-    ]
+    ],
+    withAlternatives: true
   },
   {
     id: 3,
@@ -72,7 +73,6 @@ function App() {
 
   const handleName = (name: string) => {
     setData({ ...data, clientName: name })
-    console.log(data)
   }
 
   const handleAnswer = (answer: Answer) => {

@@ -4,12 +4,14 @@ import bannerImg from '@/assets/customer-banner.svg'
 const Header = styled.div`
   position: relative;
   width: 100%;
+  overflow: hidden;
 `
 const BannerImage = styled.img`
   width: 100%;
   height: auto;
   border-radius: 0 0 20px 20px;
-  padding-left: 16px;
+  padding-left: 8px;
+  object-fit: contain;
 `
 
 const ScreenNumber = styled.span`

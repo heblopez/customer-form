@@ -5,6 +5,7 @@ import Footer from '@/components/Footer'
 import OptionButton from '@/components/OptionButton'
 import { Answer, Question } from '@/types'
 import { useState } from 'react'
+import OptionAlternativeBtn from '@/components/OptionAltButton'
 
 const Content = styled.div`
   display: flex;
@@ -12,7 +13,7 @@ const Content = styled.div`
   flex-grow: 1;
   color: #231331;
   gap: 2rem;
-  padding-inline: 2.5rem;
+  padding-inline: 2rem;
 `
 
 const Text = styled.p`
@@ -22,9 +23,9 @@ const Text = styled.p`
   margin: 0;
 `
 
-const GridLayout = styled.div`
+const GridLayout = styled.div<{ $columns: number }>`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(${props => props.$columns}, 1fr);
   gap: 12px;
 `
 
@@ -59,6 +60,9 @@ export default function QuestionPage({
     handleData({ questionId: questions[indexQuestion].id, answer: option })
   }
 
+  const withAlternatives = questions[indexQuestion].withAlternatives
+  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
   return (
     <Wrapper>
       <Hero currentPage={currentPage} totalPages={questions.length + 2} />
@@ -70,12 +74,20 @@ export default function QuestionPage({
           </Text>
         )}
         <Text>{questions[indexQuestion].question}</Text>
-        <GridLayout>
-          {questions[indexQuestion].options.map((option, index) => (
-            <OptionButton key={index} onClick={() => handleAnswer(option)}>
-              {option}
-            </OptionButton>
-          ))}
+        <GridLayout $columns={withAlternatives ? 1 : 2}>
+          {questions[indexQuestion].options.map((option, index) =>
+            withAlternatives ?
+              <OptionAlternativeBtn
+                key={index}
+                onClick={() => handleAnswer(option)}
+                char={alphabet[index]}
+              >
+                {option}
+              </OptionAlternativeBtn>
+            : <OptionButton key={index} onClick={() => handleAnswer(option)}>
+                {option}
+              </OptionButton>
+          )}
         </GridLayout>
         <Footer handlePrev={handlePrev} handleNext={handleNext} />
       </Content>

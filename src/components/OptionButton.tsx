@@ -2,6 +2,9 @@ import styled from 'styled-components'
 
 const OptionButton = styled.button`
   width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
   background-color: transparent;
   color: #231331;
   border: 1px solid #231331;
