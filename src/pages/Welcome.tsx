@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useContext, useRef } from 'react'
 import styled from 'styled-components'
 import Hero from '@/components/Hero'
 import Wrapper from '@/components/Wrapper'
@@ -7,6 +7,7 @@ import Button from '@/components/Button'
 import BannerDesktop from '@/components/BannerDesktop'
 import Content from '@/components/Content'
 import CSLogo from '@/components/Logo'
+import { SurveyContext } from '@/context/SurveyContext'
 
 const Text = styled.p`
   font-size: 20px;
@@ -23,27 +24,30 @@ const Form = styled.form`
 
 interface WelcomeProps {
   questionsNumber: number
-  clientName: string
-  handleData: (name: string) => void
-  nextPage: () => void
+  // clientName: string
+  // handleData: (name: string) => void
+  // nextPage: () => void
 }
 
 export default function WelcomePage({
-  questionsNumber,
-  clientName,
-  handleData,
-  nextPage
+  questionsNumber
+  // clientName,
+  // handleData,
+  // nextPage
 }: WelcomeProps) {
+  const { clientName, handleName, handlePage } = useContext(SurveyContext)
   const inputRef = useRef<HTMLInputElement>(null)
 
   const handleClick = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault()
     if (!inputRef.current?.value) return
-    nextPage()
+    // nextPage()
+    handlePage(2)
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    handleData(e.target.value)
+    // handleData(e.target.value)
+    handleName(e.target.value)
   }
 
   return (

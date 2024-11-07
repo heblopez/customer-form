@@ -1,46 +1,25 @@
-import { useState } from 'react'
 import WelcomePage from './pages/Welcome'
 import QuestionPage from './pages/Question'
-import { Answer, Data, Question } from './types'
+import { Question } from './types'
 import ThanksPage from './pages/Thanks'
 import questionsData from '@/assets/data/questions.json'
+import { useContext } from 'react'
+import { SurveyContext } from './context/SurveyContext'
 
 const questions: Question[] = questionsData
 
 function App() {
-  const [currentPage, setCurrentPage] = useState(1)
-  const [data, setData] = useState<Data>({ clientName: '', answers: [] })
-
-  const handleName = (name: string) => {
-    setData({ ...data, clientName: name })
-  }
-
-  const handleAnswers = (answers: Answer[]) => {
-    setData({ ...data, answers })
-  }
+  const { currentPage, answers } = useContext(SurveyContext)
 
   const handleSubmitData = () => {
-    console.log(data)
+    console.log(answers)
   }
 
   return (
-    currentPage === 1 ?
-      <WelcomePage
-        questionsNumber={questions.length}
-        clientName={data.clientName}
-        handleData={handleName}
-        nextPage={() => setCurrentPage(current => current + 1)}
-      />
+    currentPage === 1 ? <WelcomePage questionsNumber={questions.length} />
     : currentPage === questions.length + 2 ?
       <ThanksPage onSubmit={handleSubmitData} questionsNumber={questions.length} />
-    : <QuestionPage
-        clientName={data.clientName}
-        questions={questions}
-        currentPage={currentPage}
-        handlePage={setCurrentPage}
-        data={data.answers}
-        handleData={handleAnswers}
-      />
+    : <QuestionPage questions={questions} />
   )
 }
 

@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import { SurveyContext } from '@/context/SurveyContext'
 import styled from 'styled-components'
 import Hero from '@/components/Hero'
 import Wrapper from '@/components/Wrapper'
@@ -6,9 +7,9 @@ import Footer from '@/components/Footer'
 import OptionButton from '@/components/OptionButton'
 import OptionAlternativeBtn from '@/components/OptionAltButton'
 import Content from '@/components/Content'
-import BannerDesktop from '@/components/BannerDesktop'
-import { Answer, Question } from '@/types'
 import CSLogo from '@/components/Logo'
+import BannerDesktop from '@/components/BannerDesktop'
+import { Question } from '@/types'
 
 const Text = styled.p`
   font-size: 20px;
@@ -30,23 +31,13 @@ const GridLayout = styled.div<{ $withAlternatives: boolean }>`
 `
 
 interface QuestionProps {
-  clientName: string
-  currentPage: number
-  handlePage: (page: number) => void
   questions: Question[]
-  data: Answer[]
-  handleData: (answers: Answer[]) => void
 }
 
-export default function QuestionPage({
-  clientName,
-  currentPage,
-  handlePage,
-  questions,
-  data,
-  handleData
-}: QuestionProps) {
+export default function QuestionPage({ questions }: QuestionProps) {
   const [indexQuestion, setIndexQuestion] = useState(0)
+
+  const { clientName, currentPage, handlePage, handleAnswers, answers } = useContext(SurveyContext)
 
   const handleNext = () => {
     setIndexQuestion(prev => prev + 1)
@@ -59,7 +50,7 @@ export default function QuestionPage({
   }
 
   const handleAnswer = (option: string) => {
-    const updatedAnswers = data.map(answer =>
+    const updatedAnswers = answers.map(answer =>
       answer.questionId === questions[indexQuestion].id ? { ...answer, answer: option } : answer
     )
 
@@ -67,7 +58,7 @@ export default function QuestionPage({
       updatedAnswers.push({ questionId: questions[indexQuestion].id, answer: option })
     }
 
-    handleData(updatedAnswers)
+    handleAnswers(updatedAnswers)
   }
 
   const withAlternatives = questions[indexQuestion].withAlternatives
@@ -92,7 +83,7 @@ export default function QuestionPage({
                 letterKey={index}
                 onClick={() => handleAnswer(option)}
                 selected={
-                  option === data.find(a => a.questionId === questions[indexQuestion].id)?.answer
+                  option === answers.find(a => a.questionId === questions[indexQuestion].id)?.answer
                 }
               >
                 {option}
@@ -102,7 +93,7 @@ export default function QuestionPage({
                 key={index}
                 onClick={() => handleAnswer(option)}
                 selected={
-                  option === data.find(a => a.questionId === questions[indexQuestion].id)?.answer
+                  option === answers.find(a => a.questionId === questions[indexQuestion].id)?.answer
                 }
               >
                 {option}
