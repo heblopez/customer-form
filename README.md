@@ -4,9 +4,9 @@
 
 This is a project built with **React**, **Vite**, and **TypeScript** that contains a CustomerScoops satisfaction survey.
 
-# 📱 Demo
+## 📱 Demo
 
-![Demo on Vercel](customer-scoops.vercel.app)
+[Demo on Vercel](customer-scoops.vercel.app)
 
 # 🌟 Features
 

@@ -34,7 +34,8 @@ interface QuestionProps {
   currentPage: number
   handlePage: (page: number) => void
   questions: Question[]
-  handleData: (answer: Answer) => void
+  data: Answer[]
+  handleData: (answers: Answer[]) => void
 }
 
 export default function QuestionPage({
@@ -42,6 +43,7 @@ export default function QuestionPage({
   currentPage,
   handlePage,
   questions,
+  data,
   handleData
 }: QuestionProps) {
   const [indexQuestion, setIndexQuestion] = useState(0)
@@ -57,7 +59,15 @@ export default function QuestionPage({
   }
 
   const handleAnswer = (option: string) => {
-    handleData({ questionId: questions[indexQuestion].id, answer: option })
+    const updatedAnswers = data.map(answer =>
+      answer.questionId === questions[indexQuestion].id ? { ...answer, answer: option } : answer
+    )
+
+    if (!updatedAnswers.some(a => a.questionId === questions[indexQuestion].id)) {
+      updatedAnswers.push({ questionId: questions[indexQuestion].id, answer: option })
+    }
+
+    handleData(updatedAnswers)
   }
 
   const withAlternatives = questions[indexQuestion].withAlternatives
@@ -81,6 +91,9 @@ export default function QuestionPage({
                 key={index}
                 letterKey={index}
                 onClick={() => handleAnswer(option)}
+                selected={
+                  option === data.find(a => a.questionId === questions[indexQuestion].id)?.answer
+                }
               >
                 {option}
               </OptionAlternativeBtn>
@@ -88,6 +101,9 @@ export default function QuestionPage({
                 $colSpan={index === options.length - 1 && options.length % 2 !== 0 ? 2 : 1}
                 key={index}
                 onClick={() => handleAnswer(option)}
+                selected={
+                  option === data.find(a => a.questionId === questions[indexQuestion].id)?.answer
+                }
               >
                 {option}
               </OptionButton>

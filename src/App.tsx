@@ -15,13 +15,8 @@ function App() {
     setData({ ...data, clientName: name })
   }
 
-  const handleAnswer = (answer: Answer) => {
-    const index = data.answers.findIndex(a => a.questionId === answer.questionId)
-    if (index !== -1) {
-      data.answers[index] = answer
-    } else {
-      setData({ ...data, answers: [...data.answers, answer] })
-    }
+  const handleAnswers = (answers: Answer[]) => {
+    setData({ ...data, answers })
   }
 
   const handleSubmitData = () => {
@@ -43,7 +38,8 @@ function App() {
         questions={questions}
         currentPage={currentPage}
         handlePage={setCurrentPage}
-        handleData={handleAnswer}
+        data={data.answers}
+        handleData={handleAnswers}
       />
   )
 }

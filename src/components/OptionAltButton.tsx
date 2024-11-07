@@ -1,7 +1,14 @@
 import styled from 'styled-components'
 import OptionButton from './OptionButton'
 
-const Button = styled(OptionButton)`
+const Button = styled(OptionButton)<{ $selected?: boolean }>`
+  ${props =>
+    props.$selected &&
+    `
+    background-color: #231331;
+    color: white;
+  `}
+
   @media (min-width: 1024px) {
     min-height: 58px;
     border-radius: 18px;
@@ -43,6 +50,7 @@ interface OptionAlternativeBtnProps {
   children: string
   onClick: () => void
   letterKey?: number
+  selected?: boolean
 }
 
 const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
@@ -50,10 +58,11 @@ const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 export default function OptionAltBtn({
   children,
   letterKey = 0,
-  onClick
+  onClick,
+  selected
 }: OptionAlternativeBtnProps) {
   return (
-    <Button onClick={onClick}>
+    <Button $selected={selected} onClick={onClick}>
       <LetterDiv>{alphabet[letterKey] || '✔️'}</LetterDiv>
       <Text>{children}</Text>
     </Button>
