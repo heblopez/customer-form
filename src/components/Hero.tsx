@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import bannerImg from '@/assets/svg/customer-banner.svg'
+import bannerImg from '@/assets/png/customer-banner.png'
 
 const Header = styled.div`
   position: relative;
