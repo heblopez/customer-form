@@ -61,7 +61,6 @@ export default function QuestionPage({
   }
 
   const withAlternatives = questions[indexQuestion].withAlternatives
-  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
   return (
     <Wrapper>
@@ -75,16 +74,20 @@ export default function QuestionPage({
         )}
         <Text>{questions[indexQuestion].question}</Text>
         <GridLayout $columns={withAlternatives ? 1 : 2}>
-          {questions[indexQuestion].options.map((option, index) =>
+          {questions[indexQuestion].options.map((option, index, options) =>
             withAlternatives ?
               <OptionAlternativeBtn
                 key={index}
+                letterKey={index}
                 onClick={() => handleAnswer(option)}
-                char={alphabet[index]}
               >
                 {option}
               </OptionAlternativeBtn>
-            : <OptionButton key={index} onClick={() => handleAnswer(option)}>
+            : <OptionButton
+                $colSpan={index === options.length - 1 && options.length % 2 !== 0 ? 2 : 1}
+                key={index}
+                onClick={() => handleAnswer(option)}
+              >
                 {option}
               </OptionButton>
           )}

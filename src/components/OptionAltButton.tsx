@@ -24,18 +24,20 @@ const Text = styled.p`
 
 interface OptionAlternativeBtnProps {
   children: string
-  char: string
   onClick: () => void
+  letterKey?: number
 }
+
+const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
 export default function OptionAltBtn({
   children,
-  char = '✔️',
+  letterKey = 0,
   onClick
 }: OptionAlternativeBtnProps) {
   return (
     <OptionButton onClick={onClick}>
-      <LetterDiv>{char}</LetterDiv>
+      <LetterDiv>{alphabet[letterKey] || '✔️'}</LetterDiv>
       <Text>{children}</Text>
     </OptionButton>
   )

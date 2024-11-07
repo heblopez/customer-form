@@ -1,9 +1,10 @@
 import styled from 'styled-components'
 
-const OptionButton = styled.button`
+const OptionButton = styled.button<{ $colSpan?: number }>`
   width: 100%;
   position: relative;
   display: flex;
+  justify-content: center;
   align-items: center;
   background-color: transparent;
   color: #231331;
@@ -13,6 +14,7 @@ const OptionButton = styled.button`
   cursor: pointer;
   font-size: 12.5px;
   transition: background-color 0.3s ease;
+  ${props => props.$colSpan && `grid-column: span ${props.$colSpan};`};
 
   &:hover,
   &:focus,
