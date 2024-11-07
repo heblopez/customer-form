@@ -1,6 +1,12 @@
 import styled from 'styled-components'
 import OptionButton from './OptionButton'
 
+const Button = styled(OptionButton)`
+  @media (min-width: 1024px) {
+    min-height: 58px;
+  }
+`
+
 const LetterDiv = styled.div`
   position: absolute;
   left: 6px;
@@ -14,7 +20,13 @@ const LetterDiv = styled.div`
   color: white;
   font-size: 12.5px;
   border-radius: 24px;
-}`
+
+  @media (min-width: 1024px) {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+  }
+`
 
 const Text = styled.p`
   margin: 0;
@@ -36,9 +48,9 @@ export default function OptionAltBtn({
   onClick
 }: OptionAlternativeBtnProps) {
   return (
-    <OptionButton onClick={onClick}>
+    <Button onClick={onClick}>
       <LetterDiv>{alphabet[letterKey] || '✔️'}</LetterDiv>
       <Text>{children}</Text>
-    </OptionButton>
+    </Button>
   )
 }

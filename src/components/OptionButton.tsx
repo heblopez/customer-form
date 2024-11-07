@@ -26,6 +26,11 @@ const OptionButton = styled.button<{ $colSpan?: number }>`
   &:focus {
     outline: none;
   }
+
+  @media (min-width: 1024px) {
+    font-size: clamp(10.5px, 11px, 12.5px);
+    grid-column: span 1;
+  }
 `
 
 export default OptionButton

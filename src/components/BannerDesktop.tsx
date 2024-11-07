@@ -8,9 +8,13 @@ const FigureBannerDesktop = styled.figure`
     display: flex;
     margin: 0;
     position: absolute;
-    right: 0;
+    right: -7%;
     height: 100%;
     z-index: -7;
+  }
+
+  @media (min-width: 1280px) {
+    right: 0;
   }
 `
 

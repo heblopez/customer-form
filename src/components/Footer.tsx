@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import Button from '@/components/Button'
 import arrowSvg from '@/assets/left-arrow.svg'
+import nextSvg from '@/assets/green-arrow.svg'
 
 const Wrapper = styled.div`
   display: flex;
@@ -29,6 +30,16 @@ const PrevImg = styled.img`
   height: 18px;
 `
 
+const NextImg = styled.img`
+  display: none;
+
+  @media (min-width: 1024px) {
+    display: block;
+    width: 16px;
+    height: 16px;
+  }
+`
+
 interface FooterProps {
   handleNext: () => void
   handlePrev: () => void
@@ -40,7 +51,9 @@ export default function Footer({ handleNext, handlePrev }: FooterProps) {
       <PrevButton onClick={handlePrev}>
         <PrevImg src={arrowSvg} alt='previous' />
       </PrevButton>
-      <Button onClick={handleNext}>Siguiente</Button>
+      <Button onClick={handleNext}>
+        Siguiente <NextImg src={nextSvg} alt='next' />
+      </Button>
     </Wrapper>
   )
 }

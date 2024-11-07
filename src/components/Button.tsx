@@ -27,6 +27,9 @@ const Button = styled.button`
   @media (min-width: 1024px) {
     padding: 12px 48px;
     max-width: 360px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
 `
 

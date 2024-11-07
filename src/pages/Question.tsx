@@ -1,20 +1,15 @@
+import { useState } from 'react'
 import styled from 'styled-components'
 import Hero from '@/components/Hero'
 import Wrapper from '@/components/Wrapper'
 import Footer from '@/components/Footer'
 import OptionButton from '@/components/OptionButton'
-import { Answer, Question } from '@/types'
-import { useState } from 'react'
 import OptionAlternativeBtn from '@/components/OptionAltButton'
+import Content from '@/components/Content'
+import BannerDesktop from '@/components/BannerDesktop'
 
-const Content = styled.div`
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  color: #231331;
-  gap: 2rem;
-  padding-inline: 2rem;
-`
+import { Answer, Question } from '@/types'
+import CSLogo from '@/components/Logo'
 
 const Text = styled.p`
   font-size: 20px;
@@ -23,10 +18,16 @@ const Text = styled.p`
   margin: 0;
 `
 
-const GridLayout = styled.div<{ $columns: number }>`
+const GridLayout = styled.div<{ $withAlternatives: boolean }>`
   display: grid;
-  grid-template-columns: repeat(${props => props.$columns}, 1fr);
+  grid-template-columns: repeat(${props => (props.$withAlternatives ? 1 : 2)}, 1fr);
   gap: 12px;
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(${props => (props.$withAlternatives ? 2 : 3)}, 1fr);
+    width: 100%;
+    column-gap: 4px;
+  }
 `
 
 interface QuestionProps {
@@ -66,6 +67,7 @@ export default function QuestionPage({
     <Wrapper>
       <Hero currentPage={currentPage} totalPages={questions.length + 2} />
       <Content>
+        <CSLogo />
         {indexQuestion === 0 && (
           <Text>
             <strong>Genial {`${clientName}, `}</strong>ahora nos gustaría tener cierta info para
@@ -73,7 +75,7 @@ export default function QuestionPage({
           </Text>
         )}
         <Text>{questions[indexQuestion].question}</Text>
-        <GridLayout $columns={withAlternatives ? 1 : 2}>
+        <GridLayout $withAlternatives={withAlternatives}>
           {questions[indexQuestion].options.map((option, index, options) =>
             withAlternatives ?
               <OptionAlternativeBtn
@@ -94,6 +96,7 @@ export default function QuestionPage({
         </GridLayout>
         <Footer handlePrev={handlePrev} handleNext={handleNext} />
       </Content>
+      <BannerDesktop />
     </Wrapper>
   )
 }
