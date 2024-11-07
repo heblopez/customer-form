@@ -37,7 +37,8 @@ export default function WelcomePage({ questionsNumber, onClientName }: WelcomePr
 
   const handleClick = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault()
-    onClientName(inputRef.current?.value || '')
+    if (!inputRef.current?.value) return
+    onClientName(inputRef.current?.value)
   }
 
   return (

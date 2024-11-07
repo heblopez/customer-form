@@ -2,6 +2,7 @@ import { useState } from 'react'
 import WelcomePage from './pages/Welcome'
 import QuestionPage from './pages/Question'
 import { Question } from './types'
+import ThanksPage from './pages/Thanks'
 
 const questions: Question[] = [
   {
@@ -73,14 +74,17 @@ function App() {
     setCurrentPage(current => current + 1)
   }
 
-  return currentPage === 1 ?
+  return (
+    currentPage === 1 ?
       <WelcomePage questionsNumber={questions.length} onClientName={handleClientName} />
+    : currentPage === questions.length + 2 ? <ThanksPage questionsNumber={questions.length} />
     : <QuestionPage
         clientName={clientName}
         questions={questions}
         currentPage={currentPage}
         handlePage={setCurrentPage}
       />
+  )
 }
 
 export default App
