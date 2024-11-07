@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import logo from '@/assets/customer-logo.svg'
+import logo from '@/assets/svg/customer-logo.svg'
 
 const CustomerScoopsLogo = styled.img`
   display: none;

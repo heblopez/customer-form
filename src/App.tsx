@@ -3,69 +3,9 @@ import WelcomePage from './pages/Welcome'
 import QuestionPage from './pages/Question'
 import { Answer, Data, Question } from './types'
 import ThanksPage from './pages/Thanks'
+import questionsData from '@/assets/data/questions.json'
 
-const questions: Question[] = [
-  {
-    id: 1,
-    question: '¿Cuál es tu cargo/posición dentro de tu empresa?',
-    options: [
-      'Board member',
-      'C-level',
-      'Gerente',
-      'Subgerente',
-      'Jefe área',
-      'Líder de área',
-      'Ejecutivo / Analista',
-      'Otro'
-    ]
-  },
-  {
-    id: 2,
-    question: '¿Cuáles son tus principales desafíos para 2024?',
-    options: [
-      'Aumentar conversión de leads a clientes',
-      'Reducir customer churn',
-      'Implementar un programa VoC',
-      'Reducir costos en gestión de reclamos',
-      'Optimizar procesos comerciales',
-      'Optimizar procesos operativos',
-      'Otro'
-    ],
-    withAlternatives: true
-  },
-  {
-    id: 3,
-    question: '¿Cuál CRM están utilizando en tu empresa?',
-    options: [
-      'SAP',
-      'Salesforce',
-      'Zoho',
-      'Monday',
-      'Microsoft Dynamics',
-      'HubSpot',
-      'Netsuite(Oracle)',
-      'CRM Propio',
-      'No tengo CRM'
-    ]
-  },
-  {
-    id: 4,
-    question: '¿A cuál industria pertenece tu empresa?',
-    options: [
-      'Tecnología',
-      'Software',
-      'Servicios',
-      'Financiera',
-      'Telecomunicaciones',
-      'Producción/Fabricación',
-      'Logística',
-      'Consumo Masivo',
-      'Mayorista',
-      'Retail',
-      'Otro'
-    ]
-  }
-]
+const questions: Question[] = questionsData
 
 function App() {
   const [currentPage, setCurrentPage] = useState(1)

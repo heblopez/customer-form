@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import bannerImg from '@/assets/customer-desktop.svg'
+import bannerImg from '@/assets/svg/customer-desktop.svg'
 
 const FigureBannerDesktop = styled.figure`
   display: none;

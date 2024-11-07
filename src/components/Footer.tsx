@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import Button from '@/components/Button'
-import arrowSvg from '@/assets/left-arrow.svg'
-import nextSvg from '@/assets/green-arrow.svg'
+import arrowSvg from '@/assets/svg/left-arrow.svg'
+import nextSvg from '@/assets/svg/green-arrow.svg'
 
 const Wrapper = styled.div`
   display: flex;
