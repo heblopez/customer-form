@@ -2,15 +2,10 @@ import styled from 'styled-components'
 import Hero from '@/components/Hero'
 import Wrapper from '@/components/Wrapper'
 import Button from '@/components/Button'
-
-const Content = styled.div`
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  color: #231331;
-  gap: 2rem;
-  padding-inline: 2.5rem;
-`
+import CSLogo from '@/components/Logo'
+import Content from '@/components/Content'
+import BackgroundSvg from '@/assets/customer-bg-desktop.svg'
+import { useEffect } from 'react'
 
 const Heading = styled.h1`
   font-size: 30px;
@@ -39,10 +34,23 @@ export default function ThanksPage({ questionsNumber, onSubmit }: ThanksProps) {
     window.location.href = 'https://www.customerscoops.com/'
   }
 
+  useEffect(() => {
+    document.body.style.backgroundImage = `url(${BackgroundSvg})`
+    document.body.style.backgroundSize = 'cover'
+    document.body.style.backgroundPosition = 'center right'
+
+    return () => {
+      document.body.style.backgroundImage = ''
+      document.body.style.backgroundSize = ''
+      document.body.style.backgroundPosition = ''
+    }
+  }, [])
+
   return (
     <Wrapper>
       <Hero currentPage={questionsNumber + 2} totalPages={questionsNumber + 2} />
       <Content>
+        <CSLogo />
         <Heading>Muchas Gracias</Heading>
         <Text>
           por querer ser parte

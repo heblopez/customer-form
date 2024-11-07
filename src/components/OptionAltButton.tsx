@@ -4,6 +4,7 @@ import OptionButton from './OptionButton'
 const Button = styled(OptionButton)`
   @media (min-width: 1024px) {
     min-height: 58px;
+    border-radius: 18px;
   }
 `
 
@@ -32,6 +33,10 @@ const Text = styled.p`
   margin: 0;
   font-size: 12.5px;
   margin-left: 48px;
+
+  @media (min-width: 1024px) {
+    margin-left: 32px;
+  }
 `
 
 interface OptionAlternativeBtnProps {

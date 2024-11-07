@@ -7,7 +7,6 @@ import OptionButton from '@/components/OptionButton'
 import OptionAlternativeBtn from '@/components/OptionAltButton'
 import Content from '@/components/Content'
 import BannerDesktop from '@/components/BannerDesktop'
-
 import { Answer, Question } from '@/types'
 import CSLogo from '@/components/Logo'
 
