@@ -29,16 +29,27 @@ const Form = styled.form`
 
 interface WelcomeProps {
   questionsNumber: number
-  onClientName: (name: string) => void
+  clientName: string
+  handleData: (name: string) => void
+  nextPage: () => void
 }
 
-export default function WelcomePage({ questionsNumber, onClientName }: WelcomeProps) {
+export default function WelcomePage({
+  questionsNumber,
+  clientName,
+  handleData,
+  nextPage
+}: WelcomeProps) {
   const inputRef = useRef<HTMLInputElement>(null)
 
   const handleClick = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault()
     if (!inputRef.current?.value) return
-    onClientName(inputRef.current?.value)
+    nextPage()
+  }
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    handleData(e.target.value)
   }
 
   return (
@@ -47,13 +58,15 @@ export default function WelcomePage({ questionsNumber, onClientName }: WelcomePr
       <Content>
         <Text>
           Muchas gracias por tu interés en conocer <strong>customerScoops</strong>, que a través de
-          Formularios Conversacionales Inteligente te ayudamos a aumentar el revenue y rentabilidad
+          Formularios Conversacionales Inteligentes te ayudamos a aumentar el revenue y rentabilidad
           de tu negocio.
         </Text>
         <Text>Queremos conocerte, ¿cuál es tu nombre?</Text>
         <Form>
-          <Input ref={inputRef} placeholder='Nombre' />
-          <Button onClick={handleClick}>Comenzar</Button>
+          <Input ref={inputRef} value={clientName} onChange={handleChange} placeholder='Nombre' />
+          <Button disabled={!clientName || clientName.length < 3} onClick={handleClick}>
+            Comenzar
+          </Button>
         </Form>
       </Content>
     </Wrapper>

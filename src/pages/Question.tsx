@@ -3,7 +3,7 @@ import Hero from '@/components/Hero'
 import Wrapper from '@/components/Wrapper'
 import Footer from '@/components/Footer'
 import OptionButton from '@/components/OptionButton'
-import { Question } from '@/types'
+import { Answer, Question } from '@/types'
 import { useState } from 'react'
 
 const Content = styled.div`
@@ -33,13 +33,15 @@ interface QuestionProps {
   currentPage: number
   handlePage: (page: number) => void
   questions: Question[]
+  handleData: (answer: Answer) => void
 }
 
 export default function QuestionPage({
   clientName,
   currentPage,
   handlePage,
-  questions
+  questions,
+  handleData
 }: QuestionProps) {
   const [indexQuestion, setIndexQuestion] = useState(0)
 
@@ -51,6 +53,10 @@ export default function QuestionPage({
   const handlePrev = () => {
     setIndexQuestion(prev => prev - 1)
     handlePage(currentPage - 1)
+  }
+
+  const handleAnswer = (option: string) => {
+    handleData({ questionId: questions[indexQuestion].id, answer: option })
   }
 
   return (
@@ -66,7 +72,9 @@ export default function QuestionPage({
         <Text>{questions[indexQuestion].question}</Text>
         <GridLayout>
           {questions[indexQuestion].options.map((option, index) => (
-            <OptionButton key={index}>{option}</OptionButton>
+            <OptionButton key={index} onClick={() => handleAnswer(option)}>
+              {option}
+            </OptionButton>
           ))}
         </GridLayout>
         <Footer handlePrev={handlePrev} handleNext={handleNext} />

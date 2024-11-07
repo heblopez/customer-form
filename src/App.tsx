@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import WelcomePage from './pages/Welcome'
 import QuestionPage from './pages/Question'
-import { Question } from './types'
+import { Answer, Data, Question } from './types'
 import ThanksPage from './pages/Thanks'
 
 const questions: Question[] = [
@@ -65,24 +65,45 @@ const questions: Question[] = [
     ]
   }
 ]
-function App() {
-  const [clientName, setClientName] = useState('')
-  const [currentPage, setCurrentPage] = useState(1)
 
-  const handleClientName = (name: string) => {
-    setClientName(name)
-    setCurrentPage(current => current + 1)
+function App() {
+  const [currentPage, setCurrentPage] = useState(1)
+  const [data, setData] = useState<Data>({ clientName: '', answers: [] })
+
+  const handleName = (name: string) => {
+    setData({ ...data, clientName: name })
+    console.log(data)
+  }
+
+  const handleAnswer = (answer: Answer) => {
+    const index = data.answers.findIndex(a => a.questionId === answer.questionId)
+    if (index !== -1) {
+      data.answers[index] = answer
+    } else {
+      setData({ ...data, answers: [...data.answers, answer] })
+    }
+  }
+
+  const handleSubmitData = () => {
+    console.log(data)
   }
 
   return (
     currentPage === 1 ?
-      <WelcomePage questionsNumber={questions.length} onClientName={handleClientName} />
-    : currentPage === questions.length + 2 ? <ThanksPage questionsNumber={questions.length} />
+      <WelcomePage
+        questionsNumber={questions.length}
+        clientName={data.clientName}
+        handleData={handleName}
+        nextPage={() => setCurrentPage(current => current + 1)}
+      />
+    : currentPage === questions.length + 2 ?
+      <ThanksPage onSubmit={handleSubmitData} questionsNumber={questions.length} />
     : <QuestionPage
-        clientName={clientName}
+        clientName={data.clientName}
         questions={questions}
         currentPage={currentPage}
         handlePage={setCurrentPage}
+        handleData={handleAnswer}
       />
   )
 }

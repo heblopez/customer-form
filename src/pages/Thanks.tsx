@@ -29,11 +29,13 @@ const Text = styled.p`
 
 interface ThanksProps {
   questionsNumber: number
+  onSubmit: () => void
 }
 
-export default function ThanksPage({ questionsNumber }: ThanksProps) {
-  const handleClick = (e: React.FormEvent<HTMLButtonElement>) => {
+export default function ThanksPage({ questionsNumber, onSubmit }: ThanksProps) {
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
+    onSubmit()
     window.location.href = 'https://www.customerscoops.com/'
   }
 
