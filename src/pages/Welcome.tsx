@@ -4,6 +4,8 @@ import Hero from '@/components/Hero'
 import Wrapper from '@/components/Wrapper'
 import Input from '@/components/Input'
 import Button from '@/components/Button'
+import logo from '@/assets/customer-logo.svg'
+import BannerDesktop from '@/components/BannerDesktop'
 
 const Content = styled.div`
   display: flex;
@@ -12,6 +14,14 @@ const Content = styled.div`
   color: #231331;
   gap: 2rem;
   padding-inline: 2.5rem;
+  padding-bottom: 2rem;
+
+  @media (min-width: 1024px) {
+    align-self: center;
+    padding-inline: 3.5rem;
+    flex-grow: 0;
+    max-width: 420px;
+  }
 `
 
 const Text = styled.p`
@@ -25,6 +35,16 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   gap: 2rem;
+`
+
+const CustomerScoopsLogo = styled.img`
+  display: none;
+
+  @media (min-width: 1024px) {
+    display: block;
+    width: 180px;
+    height: auto;
+  }
 `
 
 interface WelcomeProps {
@@ -56,6 +76,7 @@ export default function WelcomePage({
     <Wrapper>
       <Hero currentPage={1} totalPages={questionsNumber + 2} />
       <Content>
+        <CustomerScoopsLogo src={logo} alt='customerScoops Logo' loading='lazy' />
         <Text>
           Muchas gracias por tu interés en conocer <strong>customerScoops</strong>, que a través de
           Formularios Conversacionales Inteligentes te ayudamos a aumentar el revenue y rentabilidad
@@ -69,6 +90,7 @@ export default function WelcomePage({
           </Button>
         </Form>
       </Content>
+      <BannerDesktop />
     </Wrapper>
   )
 }

@@ -23,6 +23,11 @@ const Button = styled.button`
     opacity: 0.7;
     cursor: not-allowed;
   }
+
+  @media (min-width: 1024px) {
+    padding: 12px 48px;
+    max-width: 360px;
+  }
 `
 
 export default Button

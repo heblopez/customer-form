@@ -8,6 +8,11 @@ const Input = styled.input`
   border: none;
   border-bottom: 1px solid rgba(35, 19, 49, 0.5);
   outline: none;
+
+  @media (min-width: 1024px) {
+    max-width: 360px;
+    background-color: transparent;
+  }
 `
 
 export default Input
