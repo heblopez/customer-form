@@ -4,7 +4,7 @@ import Wrapper from '@/components/Wrapper'
 import Button from '@/components/Button'
 import CSLogo from '@/components/Logo'
 import Content from '@/components/Content'
-import BackgroundSvg from '@/assets/customer-bg-desktop.svg'
+import BackgroundSvg from '@/assets/svg/customer-bg-desktop.svg'
 import { useEffect } from 'react'
 
 const Heading = styled.h1`
@@ -35,9 +35,11 @@ export default function ThanksPage({ questionsNumber, onSubmit }: ThanksProps) {
   }
 
   useEffect(() => {
-    document.body.style.backgroundImage = `url(${BackgroundSvg})`
-    document.body.style.backgroundSize = 'cover'
-    document.body.style.backgroundPosition = 'center right'
+    if (window.innerWidth >= 1024) {
+      document.body.style.backgroundImage = `url(${BackgroundSvg})`
+      document.body.style.backgroundSize = 'cover'
+      document.body.style.backgroundPosition = 'center right'
+    }
 
     return () => {
       document.body.style.backgroundImage = ''
