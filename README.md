@@ -4,6 +4,17 @@
 
 This is a project built with **React**, **Vite**, and **TypeScript** that contains a CustomerScoops satisfaction survey.
 
+# 📱 Demo
+
+![Demo on Vercel](customer-scoops.vercel.app)
+
+# 🌟 Features
+
+- A simple and intuitive user interface.
+- A survey with multiple questions and options.
+- A option to return to the previous question.
+- A thank you message after submitting the survey.
+
 ## 🛠️ Tech Stack
 
 - **React**: JavaScript library for building user interfaces.
