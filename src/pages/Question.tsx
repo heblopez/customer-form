@@ -8,7 +8,7 @@ import OptionButton from '@/components/OptionButton'
 import OptionAlternativeBtn from '@/components/OptionAltButton'
 import Content from '@/components/Content'
 import CSLogo from '@/components/Logo'
-import BannerDesktop from '@/components/BannerDesktop'
+import DesktopBanner from '@/components/DesktopBanner'
 import { Question } from '@/types'
 
 const Text = styled.p`
@@ -102,7 +102,7 @@ export default function QuestionPage({ questions }: QuestionProps) {
         </GridLayout>
         <Footer handlePrev={handlePrev} handleNext={handleNext} />
       </Content>
-      <BannerDesktop />
+      <DesktopBanner />
     </Wrapper>
   )
 }

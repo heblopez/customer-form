@@ -4,7 +4,7 @@ import Hero from '@/components/Hero'
 import Wrapper from '@/components/Wrapper'
 import Input from '@/components/Input'
 import Button from '@/components/Button'
-import BannerDesktop from '@/components/BannerDesktop'
+import BannerDesktop from '@/components/DesktopBanner'
 import Content from '@/components/Content'
 import CSLogo from '@/components/Logo'
 import { SurveyContext } from '@/context/SurveyContext'
@@ -24,29 +24,19 @@ const Form = styled.form`
 
 interface WelcomeProps {
   questionsNumber: number
-  // clientName: string
-  // handleData: (name: string) => void
-  // nextPage: () => void
 }
 
-export default function WelcomePage({
-  questionsNumber
-  // clientName,
-  // handleData,
-  // nextPage
-}: WelcomeProps) {
+export default function WelcomePage({ questionsNumber }: WelcomeProps) {
   const { clientName, handleName, handlePage } = useContext(SurveyContext)
   const inputRef = useRef<HTMLInputElement>(null)
 
   const handleClick = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault()
     if (!inputRef.current?.value) return
-    // nextPage()
     handlePage(2)
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // handleData(e.target.value)
     handleName(e.target.value)
   }
 

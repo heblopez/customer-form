@@ -24,7 +24,7 @@ const ImgDesktop = styled.img`
   object-fit: contain;
 `
 
-export default function BannerDesktop() {
+export default function DesktopBanner() {
   return (
     <FigureBannerDesktop>
       <ImgDesktop src={bannerImg} alt='customerScoops Banner' loading='lazy' />
