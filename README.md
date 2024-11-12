@@ -1,5 +1,7 @@
 # CustomerScoops Survey App 📈
 
+![Screenshot](/src/assets/png/screenshot.png)
+
 ## 🚀 Description
 
 This is a project built with **React**, **Vite**, and **TypeScript** that contains a CustomerScoops satisfaction survey.
@@ -8,7 +10,7 @@ This is a project built with **React**, **Vite**, and **TypeScript** that contai
 
 [Demo on Vercel](https://customer-scoops.vercel.app/)
 
-# 🌟 Features
+## 🌟 Features
 
 - A simple and intuitive user interface.
 - A survey with multiple questions and options.
