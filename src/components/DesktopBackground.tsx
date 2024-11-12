@@ -14,6 +14,16 @@ const FigureBackground = styled.figure`
 
   @media (min-width: 1024px) {
     display: block;
+    animation: fade-in 0.5s ease-in-out;
+
+    @keyframes fade-in {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
   }
 `
 
