@@ -4,8 +4,7 @@ import Wrapper from '@/components/Wrapper'
 import Button from '@/components/Button'
 import CSLogo from '@/components/Logo'
 import Content from '@/components/Content'
-import BackgroundPng from '@/assets/png/customer-bg-desktop.png'
-import { useEffect } from 'react'
+import DesktopBackground from '@/components/DesktopBackground'
 
 const Heading = styled.h1`
   font-size: 30px;
@@ -34,20 +33,6 @@ export default function ThanksPage({ questionsNumber, onSubmit }: ThanksProps) {
     window.location.href = 'https://www.customerscoops.com/'
   }
 
-  useEffect(() => {
-    if (window.innerWidth >= 1024) {
-      document.body.style.backgroundImage = `url(${BackgroundPng})`
-      document.body.style.backgroundSize = 'cover'
-      document.body.style.backgroundPosition = 'center right'
-    }
-
-    return () => {
-      document.body.style.backgroundImage = ''
-      document.body.style.backgroundSize = ''
-      document.body.style.backgroundPosition = ''
-    }
-  }, [])
-
   return (
     <Wrapper>
       <Hero currentPage={questionsNumber + 2} totalPages={questionsNumber + 2} />
@@ -61,6 +46,7 @@ export default function ThanksPage({ questionsNumber, onSubmit }: ThanksProps) {
         <Text>¡Nos vemos pronto!</Text>
         <Button onClick={handleClick}>Finalizar</Button>
       </Content>
+      <DesktopBackground />
     </Wrapper>
   )
 }

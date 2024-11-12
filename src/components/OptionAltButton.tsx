@@ -39,7 +39,7 @@ const LetterDiv = styled.div`
 const Text = styled.p`
   margin: 0;
   font-size: 12.5px;
-  margin-left: 48px;
+  margin-left: 40px;
 
   @media (min-width: 1024px) {
     margin-left: 32px;
